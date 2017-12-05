@@ -56,7 +56,7 @@ function debug() {
 function mySwitch(log, config) {
     this.log   = log;
     this.name  = config.name;
-    this.id    = config.id;
+    this.id    = parseInt(config.id);
     this.state = 0;
 }
 
