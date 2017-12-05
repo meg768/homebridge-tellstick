@@ -48,7 +48,7 @@ function mySwitch(log, config) {
     console.log(config);
     this.log   = log;
     this.id    = getDevice(config.name).id;
-    this.name  = config.description;
+    this.name  = config.name;
     this.state = 0;
 }
 
