@@ -49,6 +49,11 @@ function mySwitch(log, config) {
     this.log   = log;
     this.id    = getDevice(config.device).id;
     this.name  = config.device; //sprintf('%s - %s', config.location, config.description);
+
+    if (this.name.length == 0) {
+        console.log('****************');
+    }
+
     this.state = 0;
 }
 
@@ -83,7 +88,7 @@ mySwitch.prototype = {
             .setCharacteristic(Characteristic.Model, "My switch model")
             .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-        var switchService = new Service.Switch("XXXX");
+        var switchService = new Service.Switch(self.name);
         switchService
             .getCharacteristic(Characteristic.On)
             .on('get', this.getSwitchOnCharacteristic.bind(this))
