@@ -1,4 +1,5 @@
 var telldus = require('telldus');
+var sprintf = require('yow/sprintf');
 
 var Service, Characteristic;
 var devices = undefined;
