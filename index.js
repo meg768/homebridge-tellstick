@@ -4,7 +4,7 @@ var Service, Characteristic;
 var devices = undefined;
 
 
-function findDevice = function(id) {
+function findDevice(id) {
 
     if (devices == undefined)
 	   devices = telldus.getDevicesSync();
@@ -21,7 +21,7 @@ function findDevice = function(id) {
 	};
 }
 
-function getDevice = function(id) {
+function getDevice(id) {
 
 	var device = findDevice(id);
 
