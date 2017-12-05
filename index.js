@@ -45,6 +45,7 @@ function debug() {
 }
 
 function mySwitch(log, config) {
+    console.log(config);
     this.log   = log;
     this.name  = config.name;
     this.id    = getDevice(config.device).id;
