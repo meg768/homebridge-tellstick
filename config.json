@@ -1,6 +1,6 @@
 {
     "bridge": {
-        "device": "Homebridge",
+        "name": "Homebridge",
         "username": "CC:22:3D:E3:CE:30",
         "port": 51826,
         "pin": "031-45-154"
@@ -11,25 +11,22 @@
     "accessories": [
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-01-01",
+    			"name": "FK-01-01",
 
     			"location": "Kontoret",
     			"description": "Alla lampor"
 
-    		}
-    ],
-    "kalle": [
-
+    		},
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-01-02",
+    			"name": "FK-01-02",
 
     			"location": "Kontoret",
     			"description": "Sänglampa"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-01-03",
+    			"name": "FK-01-03",
 
     			"location": "Kontoret",
     			"description": "Övriga lampor"
@@ -37,21 +34,21 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-02-01",
+    			"name": "FK-02-01",
 
     			"location": "Biorummet",
     			"description": "Alla lampor"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-02-02",
+    			"name": "FK-02-02",
 
     			"location": "Biorummet",
     			"description": "Främre lampor"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "FK-02-03",
+    			"name": "FK-02-03",
 
     			"location": "Biorummet",
     			"description": "Bakre lampor"
@@ -59,7 +56,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "RV-01",
+    			"name": "RV-01",
 
     			"location": "Kontoret",
     			"description": "Rörelsevakt"
@@ -69,7 +66,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "RV-02",
+    			"name": "RV-02",
 
     			"location": "Källaren",
     			"description": "Rörelsevakt"
@@ -77,7 +74,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "RV-03",
+    			"name": "RV-03",
 
     			"location": "Stora rummet",
     			"description": "Rörelsevakt"
@@ -86,7 +83,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "SR-01",
+    			"name": "SR-01",
 
     			"location": "Simulering",
     			"description": "Skymningsrelä"
@@ -94,7 +91,7 @@
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "VS-01",
+    			"name": "VS-01",
 
     			"location": "Terassen",
     			"description": "Utebelysning"
@@ -102,35 +99,35 @@
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "VS-02",
+    			"name": "VS-02",
 
     			"location": "Snickarrummet",
     			"description": "Saftblandare"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "VS-03",
+    			"name": "VS-03",
 
     			"location": "Matrummet",
     			"description": "Alla lampor"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "VS-04",
+    			"name": "VS-04",
 
     			"location": "Stora rummet",
     			"description": "Alla lampor"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "VS-05",
+    			"name": "VS-05",
 
     			"location": "Övrigt",
     			"description": "Larm på/av"
     		},
     		{
                 "accessory": "Tellstick",
-    			"device": "RK-01",
+    			"name": "RK-01",
 
     			"location": "Övrigt",
     			"description": "Ringklocka"
@@ -139,7 +136,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "PS-01",
+    			"name": "PS-01",
 
     			"location": "Virtuella signaler",
     			"description": "Signal 1"
@@ -147,7 +144,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "PS-02",
+    			"name": "PS-02",
 
     			"location": "Virtuella signaler",
     			"description": "Signal 2"
@@ -155,7 +152,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "PS-03",
+    			"name": "PS-03",
 
     			"location": "Virtuella signaler",
     			"description": "Signal 3"
@@ -164,7 +161,7 @@
 
     		{
                 "accessory": "Tellstick",
-    			"device": "XMAS-01",
+    			"name": "XMAS-01",
 
     			"location": "Julbelysning",
     			"description": "Signal 1"
