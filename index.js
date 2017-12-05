@@ -1,4 +1,4 @@
-const Service, Characteristic;
+var Service, Characteristic;
 var state = 0;
 
 console.log('**********************************************');
@@ -32,13 +32,13 @@ mySwitch.prototype = {
         return next();
     },
     getServices: function() {
-        let informationService = new Service.AccessoryInformation();
+        var informationService = new Service.AccessoryInformation();
         informationService
             .setCharacteristic(Characteristic.Manufacturer, "My switch manufacturer")
             .setCharacteristic(Characteristic.Model, "My switch model")
             .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-        let switchService = new Service.Switch("My switch");
+        var switchService = new Service.Switch("My switch");
         switchService
             .getCharacteristic(Characteristic.On)
             .on('get', this.getSwitchOnCharacteristic.bind(this))
