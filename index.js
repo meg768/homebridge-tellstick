@@ -65,10 +65,16 @@ mySwitch.prototype = {
         var self = this;
         self.state = on ? 1 : 0;
 
-        if (self.state)
+        if (self.state) {
+            console.log('Turning on', self.id);
             telldus.turnOnSync(self.id);
-        else
+
+        }
+        else {
+            console.log('Turning off', self.id);
             telldus.turnOffSync(self.id);
+
+        }
 
         debug('State is now', self.name, self.state);
         return next();
