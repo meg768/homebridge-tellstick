@@ -83,7 +83,7 @@ mySwitch.prototype = {
             .setCharacteristic(Characteristic.Model, "My switch model")
             .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-        var switchService = new Service.Switch(self.name);
+        var switchService = new Service.Switch("XXXX");
         switchService
             .getCharacteristic(Characteristic.On)
             .on('get', this.getSwitchOnCharacteristic.bind(this))
