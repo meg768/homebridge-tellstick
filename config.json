@@ -16,7 +16,10 @@
     			"location": "Kontoret",
     			"description": "Alla lampor"
 
-    		},
+    		}
+    ],
+    "kalle": [
+
     		{
                 "accessory": "Tellstick",
     			"device": "FK-01-02",
