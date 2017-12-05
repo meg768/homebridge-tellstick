@@ -1,0 +1,22 @@
+{
+  "name": "homebridge-tellstick",
+  "version": "1.0.0",
+  "description": "homebridge-tellstick",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meg768/homebridge-tellstick.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meg768/homebridge-tellstick/issues"
+  },
+  "homepage": "https://github.com/meg768/homebridge-tellstick#readme",
+  "dependencies": {
+    "yow": "^1.0.85"
+  }
+}
