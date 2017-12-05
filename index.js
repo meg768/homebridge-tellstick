@@ -47,6 +47,7 @@ function mySwitch(log, config) {
     this.log   = log;
     this.name  = config.name;
     this.id    = getDevice(config.device).id;
+    this.name  = sprintf('%s - %s', config.location, config.description);
     this.state = 0;
 }
 
