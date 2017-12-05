@@ -65,12 +65,19 @@ mySwitch.prototype = {
     getSwitchOnCharacteristic: function(next) {
         var self = this;
         debug('Returning state', self.id, self.state);
+
         return next(null, self.state);
     },
 
     setSwitchOnCharacteristic: function(on, next) {
         var self = this;
         self.state = on ? 1 : 0;
+
+        if (self.state)
+            telldus.turnOnSync(self.id);
+        else
+            telldus.turnOffSync(self.id);
+
         debug('State is now', self.id, self.state);
         return next();
     },
