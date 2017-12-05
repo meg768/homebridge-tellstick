@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/meg768/homebridge-tellstick.git"
   },
+  "keywords": [
+      "homebrige",
+      "tellstick",
+      "homebridge-plugin"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
