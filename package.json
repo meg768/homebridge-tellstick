@@ -1,5 +1,5 @@
 {
-    "device": "homebridge-tellstick",
+    "name": "homebridge-tellstick",
     "version": "1.0.0",
     "description": "homebridge-tellstick",
     "main": "index.js",
