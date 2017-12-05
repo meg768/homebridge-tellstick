@@ -27,7 +27,7 @@ function getDevice(id) {
 	var device = findDevice(id);
 
 	if (device == undefined)
-		throw new Error(sprintf('Device %s not defined.', id.toString()));
+		throw new Error(sprintf('Device %s not defined.', id));
 	else
 		return device;
 }
