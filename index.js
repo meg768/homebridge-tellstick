@@ -47,8 +47,8 @@ function debug() {
 function mySwitch(log, config) {
     console.log(config);
     this.log   = log;
-    this.id    = getDevice(config.device).id;
-    this.name  = config.device; //sprintf('%s - %s', config.location, config.description);
+    this.id    = getDevice(config.name).id;
+    this.name  = sprintf('%s - %s', config.location, config.description);
 
     if (this.name.length == 0) {
         console.log('****************');
