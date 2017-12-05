@@ -8,15 +8,27 @@
 
     "description": "This is an example configuration file",
 
-    "accessories": [{
-            "accessory": "Tellstick",
-            "name": "Sänglampa",
-            "id": "5"
-        },
+    "accessories": [
         {
             "accessory": "Tellstick",
             "name": "Alla lampor",
-            "id": "4"
+            "device": "FK-01-01"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Sänglampa",
+            "device": "FK-01-02"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Övriga lampor",
+            "device": "FK-01-03"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Terassen",
+            "device": "VS-01"
         }
     ]
+
 }

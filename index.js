@@ -1,46 +1,36 @@
 var telldus = require('telldus');
 
 var Service, Characteristic;
-var state = 0;
-
-console.log('**********************************************');
-
-/*
-
-{
-    "bridge": {
-        "name": "Homebridge",
-        "username": "CC:22:3D:E3:CE:30",
-        "port": 51826,
-        "pin": "031-45-154"
-    },
-
-    "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for$
+var devices = undefined;
 
 
-        "accessories" : [
-          {
-            "accessory": "HomebridgeSmappee",
-            "name": "Smappee Switch",
-            "password": "admin",
-            "ip": "192.168.0.10",
-            "switch_id": "2"
-          },
-          {
-            "accessory": "Tellstick",
-            "name": "Smappee Switch",
-            "password": "admin",
-            "ip": "192.168.0.10",
-            "switch_id": "2"
-          }
+function findDevice = function(id) {
 
-        ]
+    if (devices == undefined)
+	   devices = telldus.getDevicesSync();
 
+	for (var i = 0; i < devices.length; i++) {
+		var device = devices[i];
 
+		if (id == device.id)
+			return device;
+
+		if (id == device.name) {
+			return device;
+		}
+	};
 }
 
+function getDevice = function(id) {
 
-*/
+	var device = findDevice(id);
+
+	if (device == undefined)
+		throw new Error(sprintf('Device %s not defined.', id.toString()));
+	else
+		return device;
+}
+
 
 
 module.exports = function(homebridge) {
@@ -56,7 +46,7 @@ function debug() {
 function mySwitch(log, config) {
     this.log   = log;
     this.name  = config.name;
-    this.id    = parseInt(config.id);
+    this.id    = getDevice(config.device).id;
     this.state = 0;
 }
 
