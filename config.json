@@ -28,6 +28,26 @@
             "accessory": "Tellstick",
             "name": "Terassen",
             "device": "VS-01"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Biorummet",
+            "device": "FK-02-01"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Matrummet",
+            "device": "VS-03"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Stora rummet",
+            "device": "VS-04"
+        },
+        {
+            "accessory": "Tellstick",
+            "name": "Larm",
+            "device": "VS-05"
         }
     ]
 
