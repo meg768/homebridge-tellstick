@@ -47,7 +47,6 @@ function debug() {
 function mySwitch(log, config) {
     console.log(config);
     this.log   = log;
-    this.name  = config.name;
     this.id    = getDevice(config.device).id;
     this.name  = config.device; //sprintf('%s - %s', config.location, config.description);
     this.state = 0;
@@ -71,7 +70,7 @@ mySwitch.prototype = {
         else
             telldus.turnOffSync(self.id);
 
-        debug('State is now', self.id, self.state);
+        debug('State is now', self.name, self.state);
         return next();
     },
 
