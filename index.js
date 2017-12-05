@@ -6,7 +6,7 @@ console.log('**********************************************');
 module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory("switch-plugin", "MyAwesomeSwitch", mySwitch);
+    homebridge.registerAccessory("homebridge-tellstick", "Tellstick", mySwitch);
 };
 
 function debug() {
