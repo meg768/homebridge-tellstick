@@ -26,6 +26,7 @@
     },
     "homepage": "https://github.com/meg768/homebridge-tellstick#readme",
     "dependencies": {
-        "yow": "^1.0.85"
+        "yow": "^1.0.85",
+        "telldus": "^1.1.0"
     }
 }
