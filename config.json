@@ -134,30 +134,6 @@
 
     		},
 
-    		{
-                "accessory": "Tellstick",
-    			"name": "PS-01",
-
-    			"location": "Virtuella signaler",
-    			"description": "Signal 1"
-    		},
-
-    		{
-                "accessory": "Tellstick",
-    			"name": "PS-02",
-
-    			"location": "Virtuella signaler",
-    			"description": "Signal 2"
-    		},
-
-    		{
-                "accessory": "Tellstick",
-    			"name": "PS-03",
-
-    			"location": "Virtuella signaler",
-    			"description": "Signal 3"
-    		},
-
 
     		{
                 "accessory": "Tellstick",
