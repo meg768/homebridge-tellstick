@@ -139,16 +139,15 @@ class TelldusDevice {
     }
 
     getServices() {
-        var self = this;
         var informationService = new Service.AccessoryInformation();
 
         informationService
-            .setCharacteristic(Characteristic.Manufacturer, "My switch manufacturer")
-            .setCharacteristic(Characteristic.Model, "My switch model")
+            .setCharacteristic(Characteristic.Manufacturer, this.device.protocol)
+            .setCharacteristic(Characteristic.Model, this.device.model)
             .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-        debug('NEW NAME', self.name);
-        var switchService = new Service.Switch(self.name);
+        debug('NEW NAME', this.name);
+        var switchService = new Service.Switch(this.name);
         switchService
             .getCharacteristic(Characteristic.On)
             .on('get', this.getState.bind(this))
