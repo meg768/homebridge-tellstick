@@ -45,7 +45,8 @@ telldus.addDeviceEventListener(function(id, status) {
 
     var device = findDevice(id);
 
-    if (device != undefined) {
+    if (device != undefined)
+        device.status = status;
         console.log(id, status);
 
     }
@@ -64,37 +65,29 @@ module.exports = function(homebridge) {
 
 function mySwitch(log, config) {
     console.log(config);
-    this.log   = log;
-    this.id    = getDevice(config.name).id;
-    this.name  = config.name;
-    this.state = 0;
+    this.log    = log;
+    this.device = getDevice(config.name);
+    this.name   = config.name;
 }
 
 mySwitch.prototype = {
 
     getSwitchOnCharacteristic: function(next) {
-        var self = this;
-        debug('Returning state', self.id, self.state);
-
-        return next(null, self.state);
+        debug('Returning state', this.device);
+        return next(null, this.device.status.name == 'ON');
     },
 
     setSwitchOnCharacteristic: function(on, next) {
-        var self = this;
-        self.state = on ? 1 : 0;
 
-        if (self.state) {
-            console.log('Turning on', self.id);
-            telldus.turnOnSync(self.id);
-
+        if (on) {
+            debug('Turning on', this.device);
+            telldus.turnOnSync(this.device.id);
         }
         else {
-            console.log('Turning off', self.id);
-            telldus.turnOffSync(self.id);
-
+            debug('Turning off', this.device);
+            telldus.turnOffSync(this.device.id);
         }
 
-        debug('State is now', self.name, self.state);
         return next();
     },
 
