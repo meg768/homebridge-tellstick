@@ -83,6 +83,8 @@ module.exports = function(homebridge) {
 */
 
 module.exports = function(homebridge) {
+    Service = homebridge.hap.Service;
+    Characteristic = homebridge.hap.Characteristic;
     homebridge.registerPlatform('homebridge-tellstick', 'Tellstick', TelldusPlatform);
 
 };
@@ -119,6 +121,10 @@ class TelldusDevice {
         this.name = device.name;
     }
 
+    identify(callback) {
+      debug('Identify called.');
+      callback();
+    }
 
     getState(callback) {
         debug('Returning state', this.device);
