@@ -4,11 +4,17 @@ var sprintf = require('yow/sprintf');
 var Service, Characteristic;
 var devices = undefined;
 
+function debug() {
+    console.log.apply(this, arguments);
+}
+
 
 function findDevice(id) {
 
-    if (devices == undefined)
-	   devices = telldus.getDevicesSync();
+    if (devices == undefined) {
+        devices = telldus.getDevicesSync();
+
+    }
 
 	for (var i = 0; i < devices.length; i++) {
 		var device = devices[i];
@@ -32,6 +38,18 @@ function getDevice(id) {
 		return device;
 }
 
+telldus.addDeviceEventListener(function(id, status) {
+
+    var device = findDevice(id);
+
+    if (device != undefined) {
+        console.log(id, status);
+
+    }
+    else {
+        console.log('Device', id, 'not found.');
+    }
+});
 
 
 module.exports = function(homebridge) {
@@ -40,9 +58,6 @@ module.exports = function(homebridge) {
     homebridge.registerAccessory("homebridge-tellstick", "Tellstick", mySwitch);
 };
 
-function debug() {
-    console.log.apply(this, arguments);
-}
 
 function mySwitch(log, config) {
     console.log(config);
