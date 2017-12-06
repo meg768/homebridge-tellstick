@@ -63,6 +63,60 @@ module.exports = function(homebridge) {
 };
 
 
+class mySwitch {
+
+    constructor(log, config) {
+        console.log(config);
+        this.log    = log;
+        this.device = getDevice(config.name);
+        this.name   = config.name;
+    }
+
+
+    getSwitchOnCharacteristic(next) {
+        debug('Returning state', this.device);
+        return next(null, this.device.status.name == 'ON');
+    }
+
+    setSwitchOnCharacteristic(on, next) {
+
+        if (on) {
+            debug('Turning on', this.device);
+            telldus.turnOnSync(this.device.id);
+        }
+        else {
+            debug('Turning off', this.device);
+            telldus.turnOffSync(this.device.id);
+        }
+
+        return next();
+    }
+
+    getServices() {
+        var self = this;
+        var informationService = new Service.AccessoryInformation();
+
+        informationService
+            .setCharacteristic(Characteristic.Manufacturer, "My switch manufacturer")
+            .setCharacteristic(Characteristic.Model, "My switch model")
+            .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+
+        debug('NEW NAME', self.name);
+        var switchService = new Service.Switch(self.name);
+        switchService
+            .getCharacteristic(Characteristic.On)
+            .on('get', this.getSwitchOnCharacteristic.bind(this))
+            .on('set', this.setSwitchOnCharacteristic.bind(this));
+
+        this.informationService = informationService;
+        this.switchService = switchService;
+        return [informationService, switchService];
+    }
+
+};
+
+/*
+
 function mySwitch(log, config) {
     console.log(config);
     this.log    = log;
@@ -113,3 +167,6 @@ mySwitch.prototype = {
     }
 
 };
+
+
+*/
