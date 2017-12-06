@@ -106,10 +106,10 @@ class TelldusPlatform {
 
 class TelldusDevice {
 
-    constructor(homebrige, device) {
+    constructor(homebridge, device) {
         debug(device);
         this.device = device;
-        this.homebrige = homebrige;
+        this.homebridge = homebridge;
         this.name = device.name;
     }
 
@@ -139,6 +139,7 @@ class TelldusDevice {
     getServices() {
         var Service = this.homebridge.hap.Service;
         var Characteristic = this.homebridge.hap.Characteristic;
+        
         var informationService = new Service.AccessoryInformation();
 
         informationService
