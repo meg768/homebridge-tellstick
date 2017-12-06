@@ -87,7 +87,7 @@ class TelldusPlatform {
     }
 
     accessories(callback) {
-        this.log('Loading devices...');
+        debug('Loading devices...');
 
         var devices = getDevices();
         var list = [];
@@ -110,6 +110,8 @@ class TelldusDevice {
         debug(device);
         this.device = device;
         this.homebridge = homebridge;
+
+        // A device must have a name present
         this.name = device.name;
     }
 
@@ -126,10 +128,14 @@ class TelldusDevice {
     identify(callback) {
         debug('Identify called.');
 
-        turnOn();
-        turnOff();
-        turnOn();
-        turnOff();
+        if (this.device.status.name == 'ON') {
+            turnOff();
+            turnOn();
+        }
+        else {
+            turnOn();
+            turnOff();
+        }
 
     }
 
