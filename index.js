@@ -116,12 +116,8 @@ class TelldusDevice {
     turnOn() {
         return new Promise((resolve, reject) => {
             debug('Turning off', this.device.name);
-            telldus.turnOn(this.device.id, (error) => {
-                if (error)
-                    reject();
-                else
-                    resolve();
-            });
+            telldus.turnOnSync(this.device.id);
+            resolve();
         });
 
     }
@@ -129,12 +125,8 @@ class TelldusDevice {
     turnOff() {
         return new Promise((resolve, reject) => {
             debug('Turning off', this.device.name);
-            telldus.turnOff(this.device.id, (error) => {
-                if (error)
-                    reject();
-                else
-                    resolve();
-            });
+            telldus.turnOffSync(this.device.id);
+            resolve();
         });
 
     }
