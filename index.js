@@ -1,3 +1,5 @@
+"use strict";
+
 var telldus = require('telldus');
 var sprintf = require('yow/sprintf');
 
