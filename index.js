@@ -128,18 +128,17 @@ class TelldusDevice {
         if (value) {
             debug('Turning on', this.device.name);
 
-            telldus.turnOnSync(this.device.id, (error) => {
-                //callback(error);
+            telldus.turnOn(this.device.id, (error) => {
+                callback(error);
             });
         } else {
             debug('Turning off', this.device.name);
 
-            telldus.turnOffSync(this.device.id, (error) => {
-                //callback(error);
+            telldus.turnOff(this.device.id, (error) => {
+                callback(error);
             });
         }
 
-        callback();
     }
 
     getServices() {
@@ -153,10 +152,10 @@ class TelldusDevice {
         info.setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
         var service = new Service.Lightbulb(this.device.name);
+        var characteristic = service.getCharacteristic(Characteristic.On);
 
-        service.getCharacteristic(Characteristic.On);
-        service.on('get', this.getState.bind(this))
-        service.on('set', this.setState.bind(this));
+        characteristic.on('get', this.getState.bind(this));
+        characteristic.on('set', this.setState.bind(this));
 
         debug('NEW NAME', this.device.name);
 
