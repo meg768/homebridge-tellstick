@@ -114,41 +114,22 @@ class TelldusDevice {
     }
 
     turnOn() {
-        return new Promise((resolve, reject) => {
-            debug('Turning off', this.device.name);
-            telldus.turnOnSync(this.device.id);
-            resolve();
-        });
-
+        debug('Turning on', this.device.name);
+        telldus.turnOnSync(this.device.id);
     }
 
     turnOff() {
-        return new Promise((resolve, reject) => {
-            debug('Turning off', this.device.name);
-            telldus.turnOffSync(this.device.id);
-            resolve();
-        });
-
+        debug('Turning off', this.device.name);
+        telldus.turnOffSync(this.device.id);
     }
 
     identify(callback) {
         debug('Identify called.');
 
-        this.turnOn().then(() => {
-            return this.turnOff();
-        })
-        .then(() => {
-            return this.turnOn();
-        })
-        .then(() => {
-            return this.turnOff();
-        })
-        .then(() => {
-            callback();
-        })
-        .catch((error) => {
-            callback(error);
-        })
+        turnOn();
+        turnOff();
+        turnOn();
+        turnOff();
 
     }
 
@@ -159,14 +140,12 @@ class TelldusDevice {
 
     setState(value, callback) {
 
-        var promise = value ? this.turnOn() : this.turnOff();
+        if (value)
+            this.turnOn();
+        else
+            this.turnOff();
 
-        promise.then(() => {
-            callback();
-        })
-        .catch((error) => {
-            callback(error);
-        });
+        callback();
     }
 
     getServices() {
