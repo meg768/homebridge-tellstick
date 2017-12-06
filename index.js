@@ -128,16 +128,18 @@ class TelldusDevice {
         if (value) {
             debug('Turning on', this.device.name);
 
-            telldus.turnOn(this.device.id, (error) => {
-                callback(error);
+            telldus.turnOnSync(this.device.id, (error) => {
+                //callback(error);
             });
         } else {
             debug('Turning off', this.device.name);
 
-            telldus.turnOff(this.device.id, (error) => {
-                callback(error);
+            telldus.turnOffSync(this.device.id, (error) => {
+                //callback(error);
             });
         }
+
+        callback();
     }
 
     getServices() {
