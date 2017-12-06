@@ -12,8 +12,9 @@ function debug() {
 function findDevice(id) {
 
     if (devices == undefined) {
+        debug('Loading devices');
         devices = telldus.getDevicesSync();
-
+        debug(devices);
     }
 
 	for (var i = 0; i < devices.length; i++) {
@@ -37,6 +38,8 @@ function getDevice(id) {
 	else
 		return device;
 }
+
+debug('Adding event listener');
 
 telldus.addDeviceEventListener(function(id, status) {
 
