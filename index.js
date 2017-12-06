@@ -80,6 +80,9 @@ module.exports = function(homebridge) {
 
 class TelldusPlatform {
     constructor(log, config, homebridge) {
+        console.log('******************************');
+        console.log(arguments);
+        console.log('******************************');
         this.log = log;
         this.config = config;
         this.homebridge = homebridge;
