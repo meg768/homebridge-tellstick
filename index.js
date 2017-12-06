@@ -80,11 +80,7 @@ module.exports = function(homebridge) {
 
 class TelldusPlatform {
     constructor(log, config, homebridge) {
-        super();
-        
-        console.log('******************************');
-        console.log(arguments);
-        console.log('******************************');
+
         this.log = log;
         this.config = config;
         this.homebridge = homebridge;
@@ -98,7 +94,7 @@ class TelldusPlatform {
 
         devices.forEach((device) => {
             if (device.type.toUpperCase() == 'DEVICE')
-                list.push(new TelldusDevice(this.homebrige, device));
+                list.push(new TelldusDevice(this.homebridge, device));
         });
 
         callback(list);
