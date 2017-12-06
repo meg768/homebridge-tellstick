@@ -2,6 +2,7 @@
 
 var telldus = require('telldus');
 var sprintf = require('yow/sprintf');
+var devices = undefined;
 
 /*
 
@@ -13,11 +14,9 @@ var sprintf = require('yow/sprintf');
     type: 'DEVICE',
     status: { name: 'ON' } },
 
-    */
+*/
 
 
-var Service, Characteristic;
-var devices = undefined;
 
 function debug() {
     console.log.apply(this, arguments);
@@ -59,8 +58,6 @@ function getDevice(id) {
         return device;
 }
 
-debug('Adding event listener');
-
 telldus.addDeviceEventListener(function(id, status) {
 
     var device = findDevice(id);
@@ -74,26 +71,18 @@ telldus.addDeviceEventListener(function(id, status) {
     }
 });
 
-/*
-module.exports = function(homebridge) {
-    Service = homebridge.hap.Service;
-    Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory("homebridge-tellstick", "Tellstick", TelldusSwitch);
-};
-*/
+
 
 module.exports = function(homebridge) {
-    Service = homebridge.hap.Service;
-    Characteristic = homebridge.hap.Characteristic;
     homebridge.registerPlatform('homebridge-tellstick', 'Tellstick', TelldusPlatform);
 
 };
 
 class TelldusPlatform {
     constructor(log, config, homebridge) {
-        this.log = log
-        this.config = config
-        this.homebridge = homebridge
+        this.log = log;
+        this.config = config;
+        this.homebridge = homebridge;
     }
 
     accessories(callback) {
@@ -103,7 +92,8 @@ class TelldusPlatform {
         var list = [];
 
         devices.forEach((device) => {
-            list.push(new TelldusDevice(device));
+            if (device.type.toUpperCase() == 'DEVICE')
+                list.push(new TelldusDevice(this.homebrige, device));
         });
 
         callback(list);
@@ -115,9 +105,10 @@ class TelldusPlatform {
 
 class TelldusDevice {
 
-    constructor(device) {
+    constructor(homebrige, device) {
         debug(device);
         this.device = device;
+        this.homebrige = homebrige;
         this.name = device.name;
     }
 
@@ -145,6 +136,8 @@ class TelldusDevice {
     }
 
     getServices() {
+        var Service = this.homebridge.hap.Service;
+        var Characteristic = this.homebridge.hap.Characteristic;
         var informationService = new Service.AccessoryInformation();
 
         informationService
@@ -165,111 +158,3 @@ class TelldusDevice {
     }
 
 };
-/*
-class TelldusSwitch {
-
-    constructor(log, config) {
-        console.log(config);
-        this.log = log;
-        this.device = getDevice(config.name);
-        this.name = config.name;
-    }
-
-
-    getState(callback) {
-        debug('Returning state', this.device);
-        return callback(null, this.device.status.name == 'ON');
-    }
-
-    setState(on, callback) {
-
-        if (on) {
-            debug('Turning on', this.device);
-            telldus.turnOnSync(this.device.id);
-        } else {
-            debug('Turning off', this.device);
-            telldus.turnOffSync(this.device.id);
-        }
-
-        return callback();
-    }
-
-    getServices() {
-        var self = this;
-        var informationService = new Service.AccessoryInformation();
-
-        informationService
-            .setCharacteristic(Characteristic.Manufacturer, "My switch manufacturer")
-            .setCharacteristic(Characteristic.Model, "My switch model")
-            .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
-
-        debug('NEW NAME', self.name);
-        var switchService = new Service.Switch(self.name);
-        switchService
-            .getCharacteristic(Characteristic.On)
-            .on('get', this.getState.bind(this))
-            .on('set', this.setState.bind(this));
-
-        this.informationService = informationService;
-        this.switchService = switchService;
-        return [informationService, switchService];
-    }
-
-};
-
-*/
-/*
-
-function mySwitch(log, config) {
-    console.log(config);
-    this.log    = log;
-    this.device = getDevice(config.name);
-    this.name   = config.name;
-}
-
-mySwitch.prototype = {
-
-    getSwitchOnCharacteristic: function(next) {
-        debug('Returning state', this.device);
-        return next(null, this.device.status.name == 'ON');
-    },
-
-    setSwitchOnCharacteristic: function(on, next) {
-
-        if (on) {
-            debug('Turning on', this.device);
-            telldus.turnOnSync(this.device.id);
-        }
-        else {
-            debug('Turning off', this.device);
-            telldus.turnOffSync(this.device.id);
-        }
-
-        return next();
-    },
-
-    getServices: function() {
-        var self = this;
-        var informationService = new Service.AccessoryInformation();
-
-        informationService
-            .setCharacteristic(Characteristic.Manufacturer, "My switch manufacturer")
-            .setCharacteristic(Characteristic.Model, "My switch model")
-            .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
-
-        debug('NEW NAME', self.name);
-        var switchService = new Service.Switch(self.name);
-        switchService
-            .getCharacteristic(Characteristic.On)
-            .on('get', this.getSwitchOnCharacteristic.bind(this))
-            .on('set', this.setSwitchOnCharacteristic.bind(this));
-
-        this.informationService = informationService;
-        this.switchService = switchService;
-        return [informationService, switchService];
-    }
-
-};
-
-
-*/
