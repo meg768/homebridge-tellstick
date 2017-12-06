@@ -139,7 +139,7 @@ class TelldusDevice {
     getServices() {
         var Service = this.homebridge.hap.Service;
         var Characteristic = this.homebridge.hap.Characteristic;
-        
+
         var informationService = new Service.AccessoryInformation();
 
         informationService
@@ -148,7 +148,7 @@ class TelldusDevice {
             .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
         debug('NEW NAME', this.name);
-        var switchService = new Service.Switch(this.name);
+        var switchService = new Service.Lightbulb(this.name);
         switchService
             .getCharacteristic(Characteristic.On)
             .on('get', this.getState.bind(this))
