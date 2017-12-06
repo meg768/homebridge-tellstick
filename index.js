@@ -45,7 +45,7 @@ telldus.addDeviceEventListener(function(id, status) {
 
     var device = findDevice(id);
 
-    if (device != undefined)
+    if (device != undefined) {
         device.status = status;
         console.log(id, status);
 
