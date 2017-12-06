@@ -110,6 +110,7 @@ class TelldusDevice {
         debug(device);
         this.device = device;
         this.homebridge = homebridge;
+        this.name = device.name;
     }
 
     identify(callback) {
@@ -143,23 +144,21 @@ class TelldusDevice {
         var Service = this.homebridge.hap.Service;
         var Characteristic = this.homebridge.hap.Characteristic;
 
-        var informationService = new Service.AccessoryInformation();
+        var info = new Service.AccessoryInformation();
 
-        informationService
-            .setCharacteristic(Characteristic.Manufacturer, this.device.protocol)
-            .setCharacteristic(Characteristic.Model, this.device.model)
-            .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+        info.setCharacteristic(Characteristic.Manufacturer, this.device.protocol);
+        info.setCharacteristic(Characteristic.Model, this.device.model);
+        info.setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+
+        var service = new Service.Lightbulb(this.device.name);
+
+        service.getCharacteristic(Characteristic.On);
+        service.on('get', this.getState.bind(this))
+        service.on('set', this.setState.bind(this));
 
         debug('NEW NAME', this.device.name);
-        var switchService = new Service.Lightbulb(this.device.name);
-        switchService
-            .getCharacteristic(Characteristic.On)
-            .on('get', this.getState.bind(this))
-            .on('set', this.setState.bind(this));
 
-        this.informationService = informationService;
-        this.switchService = switchService;
-        return [informationService, switchService];
+        return [info, service];
     }
 
 };
